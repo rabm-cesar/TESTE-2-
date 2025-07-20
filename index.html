@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FINZ - by Rebeca</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="phone-container">
+    
+    <div class="modal-overlay hidden" id="transaction-modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Nova Transação</h2>
+                <button class="close-modal-btn" id="close-transaction-modal-btn">&times;</button>
+            </div>
+            <form id="transaction-form">
+                <div class="form-group">
+                    <div class="type-toggle">
+                        <button type="button" class="toggle-btn active" id="type-expense">Despesa</button>
+                        <button type="button" class="toggle-btn" id="type-income">Receita</button>
+                    </div>
+                </div>
+                <div class="form-group amount-group">
+                    <input type="number" id="modal-amount" placeholder="0,00" step="0.01" min="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-description">Descrição</label>
+                    <input type="text" id="modal-description" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-category">Categoria</label>
+                    <select id="modal-category" required>
+                        <option value="Alimentação">Alimentação</option>
+                        <option value="Transporte">Transporte</option>
+                        <option value="Moradia">Moradia</option>
+                        <option value="Lazer">Lazer</option>
+                        <option value="Salário">Salário</option>
+                        <option value="Educação">Educação</option>
+                        <option value="Saúde">Saúde</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                </div>
+                <button type="submit" class="action-btn">Salvar</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="modal-overlay hidden" id="report-modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Relatório</h2>
+                <button class="close-modal-btn" id="close-report-modal-btn">&times;</button>
+            </div>
+            <div class="form-group">
+                <label>Selecione o período:</label>
+                <div class="report-controls">
+                    <input type="date" id="report-start-date">
+                    <input type="date" id="report-end-date">
+                </div>
+            </div>
+            <button id="generate-report-btn" class="action-btn">Gerar Relatório de Despesas</button>
+            <div id="report-output-area" style="margin-top: 1rem;">
+                <p>O resultado do relatório aparecerá aqui.</p>
+            </div>
+        </div>
+    </div>
+
+    <header class="app-header">
+        <h1 class="app-title">FINZ</h1>
+        <div class="header-icons">
+            <button class="icon-btn" id="open-report-modal-btn">📊</button>
+            <button class="icon-btn">👤</button>
+        </div>
+    </header>
+
+    <main class="app-main">
+        <div class="balance-card">
+            <p class="balance-label">Saldo Atual</p>
+            <p class="balance-value" id="balance-value">R$ 0,00</p>
+        </div>
+        <div class="add-button-container">
+            <button class="add-button" id="add-transaction-btn">
+                <span class="plus-icon">+</span>
+            </button>
+        </div>
+        <div class="transaction-list-container">
+            <h2 class="transaction-list-title">Últimas Transações</h2>
+            <ul class="transaction-list" id="transaction-list"></ul>
+        </div>
+    </main>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
