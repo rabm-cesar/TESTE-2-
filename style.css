@@ -1,0 +1,365 @@
+/* --- Reset Básico e Definições Globais --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F7F8FC; /* Cinza claro de fundo */
+    color: #333333; /* Cinza escuro para texto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* --- Container Principal (Simula um telemóvel) --- */
+.phone-container {
+    width: 100%;
+    max-width: 420px;
+    height: 850px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* --- Cabeçalho --- */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.app-title {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: #0E4D92; /* Azul Escuro */
+}
+
+.icon-btn {
+    font-size: 1.5rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #0E4D92;
+}
+
+/* --- Conteúdo Principal --- */
+.app-main {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-bottom: 5rem;
+}
+
+/* --- Cartão de Saldo --- */
+.balance-card {
+    background-color: #FFFFFF;
+    padding: 1.5rem;
+    border-radius: 1.25rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin: 1rem;
+}
+
+.balance-label {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.balance-value {
+    font-size: 2.25rem;
+    font-weight: 900;
+    color: #0E4D92;
+    margin-top: 0.25rem;
+}
+
+/* --- Botão de Adicionar --- */
+.add-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.add-button {
+    width: 6rem;
+    height: 6rem;
+    background-color: #48C9B0; /* Verde Menta */
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 20px rgba(72, 201, 176, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(72, 201, 176, 0.5);
+}
+
+.plus-icon {
+    font-size: 3rem;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.add-button:hover .plus-icon {
+    transform: rotate(90deg);
+}
+
+/* --- Lista de Transações --- */
+.transaction-list-container {
+    margin: 0 1rem;
+}
+
+.transaction-list-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.transaction-list {
+    background-color: #FFFFFF;
+    border-radius: 1.25rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    list-style: none;
+    padding: 0;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+.transaction-details {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.transaction-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #F7F8FC;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
+}
+
+.transaction-info .transaction-category {
+    font-weight: 600;
+}
+.transaction-info .transaction-date {
+     font-size: 0.8rem; color: #888;
+}
+
+.transaction-description {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.transaction-value {
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-align: right;
+}
+
+.income { color: #2ECC71; }
+.expense { color: #E74C3C; }
+
+/* --- Modal (Estilo Genérico) --- */
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 100;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    background-color: #F7F8FC;
+    width: 100%;
+    max-width: 420px;
+    padding: 1.5rem;
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
+    animation: slide-up 0.4s ease-out;
+}
+
+@keyframes slide-up {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-title {
+    color: #0E4D92;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.close-modal-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+}
+
+/* --- Estilos do Formulário do Modal de Transação --- */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #DDD;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    background-color: #FFF;
+}
+
+.amount-group input {
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-align: center;
+    color: #0E4D92;
+    border: none;
+    background: transparent;
+    padding: 0;
+    outline: none;
+}
+
+.amount-group input::placeholder {
+    color: #bdc3c7;
+}
+
+.type-toggle {
+    display: flex;
+    background-color: #EAEAEA;
+    border-radius: 99px;
+    padding: 0.25rem;
+}
+
+.toggle-btn {
+    width: 50%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 99px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: transparent;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn.active {
+    color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#type-expense.active { background-color: #E74C3C; }
+#type-income.active { background-color: #2ECC71; }
+
+/* --- Estilos do Modal de Relatório --- */
+.report-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+#report-output-area {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    min-height: 100px;
+}
+
+#report-output-area ul {
+    list-style: none;
+    padding: 0;
+}
+
+#report-output-area li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* --- Botão Genérico --- */
+.action-btn {
+    width: 100%;
+    padding: 1rem;
+    background-color: #48C9B0;
+    color: white;
+    border: none;
+    border-radius: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 1rem;
+}
+
+.action-btn:hover {
+    background-color: #40b39e;
+}
